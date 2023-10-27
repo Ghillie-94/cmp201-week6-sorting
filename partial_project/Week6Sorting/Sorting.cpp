@@ -12,7 +12,43 @@
 // Runs in O(N^2).
 void CocktailShakerSort(int a[], int size)
 {
+	int temp;
+	bool swap = true;
+	int end = size - 1;
+	int start = 0;
 	// TODO: assessed, [1.0]
+	while (swap)
+	{
+		for (int i = start; i < end; ++i)
+		{
+			if (a[i] > a[i + 1])
+			{
+				temp = a[i];
+				a[i] = a[i + 1];
+				a[i + 1] = temp;
+				swap = true;
+			}
+		}
+
+		if (!swap)
+		{
+			break;
+		}
+
+		swap = false;
+		--end;
+		for (int j = end - 1; j >= start; --j)
+		{
+			if (a[j] > a[j + 1])
+			{
+				temp = a[j];
+				a[j] = a[j + 1];
+				a[j + 1] = temp;
+				swap = true;
+			}
+		}
+		++start;
+	}
 	
 }
 
@@ -21,6 +57,21 @@ void CocktailShakerSort(int a[], int size)
 void InsertionSort(int a[], int size)
 {
 	// TODO: assessed, [1.5]
+	int target; int i; int j;
+
+	for (i = 1; i < size; ++i)
+	{
+		target = a[i];
+		j = i - 1;
+
+		while (j >= 0 && a[j] > target)
+		{
+			a[j + 1] = a[j];
+			j = j - 1;
+		}
+		a[j + 1] = target;
+	}
+
 	
 }
 
@@ -46,6 +97,7 @@ void fillArray(int a[], int size)
 	{
 		a[i] = rand() % (size * 3);
 	}
+
 }
 
 // Utility function: O(n) sorted check with early exit.
