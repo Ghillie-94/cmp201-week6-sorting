@@ -79,14 +79,39 @@ void InsertionSort(int a[], int size)
 // Runs in O(n) and chooses the final element as the pivot
 int partition(int a[], int begin, int end)
 {
+	
 	// TODO: assessed, [2.0]
-	return 0;
+	int i = begin - 1;
+	int pivot = a[end];
+	int temp;
+	for (int j = begin; j <= end - 1; ++j)
+	{
+		if (a[j] <= pivot)
+		{
+			++i;
+			temp = a[j];
+			a[j] = a[i];
+			a[i] = temp;
+		}
+	}
+	temp = a[end];
+	a[end] = a[i + 1];
+	a[i + 1] = temp;
+
+	return i + 1;
 }
 
-// Sorting using partition() and recusion. Runs in O(n log(n))
+// Sorting using partition() and *recursion. Runs in O(n log(n))
 void QuickSort(int a[], int begin, int end)
 {
+	
 	// TODO: assessed, [0.5]
+	if (begin < end)
+	{
+		int pi = partition(a, begin, end);
+		QuickSort(a, begin, pi - 1);
+		QuickSort(a, pi + 1, end);
+	}
 	
 }
 
